@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1770500049411,
+    "name": "Test Investor",
+    "email": "test@example.com",
+    "company": "Test Corp",
+    "amount": 50000,
+    "type": "equity",
+    "message": "This is a test investment application for Cpace City.",
+    "file": null,
+    "timestamp": "2026-02-07T21:34:09.411Z"
+  },
+  {
+    "id": 1770502377545,
+    "name": "LocalTest",
+    "email": "localtest@example.com",
+    "company": "Local Corp",
+    "amount": 75000,
+    "type": "strategic",
+    "message": "Local test with nodemailer fallback.",
+    "file": null,
+    "timestamp": "2026-02-07T22:12:57.545Z"
+  }
+]
