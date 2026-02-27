@@ -1,0 +1,127 @@
+/* ===============================
+   APPLE PRO MAX BASE
+=============================== */
+
+body{
+  margin:0;
+  background: url('gallery/background 3.png') center/cover no-repeat fixed;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+}
+
+.wc-section{
+  padding:120px 6%;
+  overflow:hidden;
+  position:relative;
+}
+
+/* ===============================
+   CINEMATIC INTRO
+=============================== */
+
+.wc-section{
+  animation:introZoom 1.4s cubic-bezier(.22,.61,.36,1);
+}
+
+@keyframes introZoom{
+  from{
+    opacity:0;
+    transform:scale(1.08) translateY(40px);
+    filter:blur(10px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+    filter:blur(0);
+  }
+}
+
+/* ===============================
+   HEADER
+=============================== */
+
+.wc-header h2{
+  font-size:56px;
+  letter-spacing:-.03em;
+}
+
+.wc-header p{
+  font-size:25px;
+  color:#000000;
+}
+
+/* ===============================
+   SLIDER
+=============================== */
+
+.marquee-scene{
+  overflow:hidden;
+  cursor:grab;
+}
+
+.marquee-scene:active{
+  cursor:grabbing;
+}
+
+.wc-track{
+  display:flex;
+  gap:40px;
+  padding:60px 0;
+  scroll-behavior:smooth;
+  user-select:none;
+}
+
+/* ===============================
+   APPLE GLASS CARDS
+=============================== */
+
+.wc-body{
+  min-width:380px;
+  border-radius:30px;
+  overflow:hidden;
+  background:rgb(0, 0, 0);
+  backdrop-filter:blur(30px);
+  box-shadow:0 10px 30px rgb(219, 160, 8);
+
+  transform-style:preserve-3d;
+  transition:transform .25s ease, box-shadow .25s;
+  position:relative;
+}
+
+/* Dynamic Light Reflection */
+
+.wc-body::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    rgb(20, 20, 20) 40%,
+    transparent 80%
+  );
+  opacity:0;
+  transition:opacity .4s;
+}
+
+.wc-body:hover::before{
+  opacity:1;
+}
+
+.wc-body:hover{
+  transform:scale(1.05) rotateY(8deg) rotateX(4deg);
+  box-shadow:0 30px 60px rgba(0,0,0,.15);
+}
+
+/* ===============================
+   SCROLL REVEAL
+=============================== */
+
+.reveal{
+  opacity:0;
+  transform:translateY(40px) scale(.96);
+  transition:1s cubic-bezier(.22,.61,.36,1);
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cpace technologies</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css" as="style">
+
+    <!-- Montserrat & Roboto Fonts -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Meta tags for SEO -->
+    <meta name="description"
+        content="CPace Technologies Limited - Pioneering the next frontier of human civilization through technological leadership and human-centered innovation.">
+    <meta name="keywords" content="space technology, aerospace, innovation, universal expansion, airborne cities">
+    <meta name="author" content="CPace Technologies Limited">
+    <style>
+        /* Textile image sizing and interactive styles - Apple-like cards */
+        .textile-item {
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            background: transparent;
+            transition: transform 280ms cubic-bezier(.2, .8, .2, 1), box-shadow 280ms;
+        }
+
+        .textile-card {
+            display: block;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 0;
+            /* removed internal padding so images align flush */
+        }
+
+        .textile-image {
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            object-fit: cover;
+            display: block;
+            border-radius: 8px;
+            transition: transform 360ms cubic-bezier(.2, .8, .2, 1), filter 360ms;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .textile-meta {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .textile-title {
+            color: #fff;
+            font-family: var(--font-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.2px;
+        }
+
+        .textile-sub {
+            color: #bfc7d6;
+            font-size: 0.85rem;
+        }
+
+        .textile-card:hover .textile-image {
+            transform: scale(1.04);
+            filter: brightness(1.04);
+        }
+
+        .textile-item:focus-within {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Layout: 4-column desktop grid (Apple-like), responsive to 2/1 columns */
+        .textiles-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* 4 columns on wide screens */
+            column-gap: 0;
+            /* images flush horizontally */
+            row-gap: 16px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .textiles-grid .textile-item {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: center;
+        }
+
+        /* Responsive: 2 columns for medium screens */
+        @media (max-width: 1199px) {
+            .textiles-grid {
+                grid-template-columns: repeat(2, 1fr);
+                column-gap: 0;
+                row-gap: 16px;
+                padding: 0;
+            }
+        }
+
+        /* Mobile: 1 column */
+        @media (max-width: 767px) {
+            .textiles-grid {
+                grid-template-columns: 1fr;
+                padding: 0 10px;
+                row-gap: 12px;
+            }
+        }
+
+        /* Simple modal (lightbox) - Enhanced */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content-img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.4);
+            animation: slideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-caption {
+            margin-top: 16px;
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            color: #fff;
+            font-size: 32px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: rotate(90deg);
+        }
+
+        /* Policies hero section with background image */
+        .policies-hero {
+            background-image: url('gallery/textile.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== HEADER ===== -->
+    <header id="main-header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <a href="#hero" class="logo-link">
+                    <br>
+                    <br>
+                    <img src="gallery/logo.png" alt="Cpace Technologies Logo" class="logo">
+                    <div class="logo-text">Cpace
+                    </div>
+                </a>
+            </div>
+
+            <nav>
+                <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul id="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="project.html" class="nav-link">Projects</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content">
+        <section class="policies-hero">
+            <div class="container hero-content">
+                <h1>Our Textiles</h1>
+                <div class="hero-subtitle">Advanced fabrics for cpace</div>
+                <p class="hero-description">
+                    At Cpace Technologies, our textile division specializes in advanced materials and fabrics. fabrics
+                    are designed to withstand extreme temperatures, radiation, and micrometeoroid impacts, ensuring the
+                    safety and durability of our aerospace suits and habitats.</p>
+            </div>
+        </section>
+        <div class="container">
+            <section class="textiles-section">
+                <h2 id="textile-innovations">Our Textile Innovations</h2>
+                <div class="textiles-grid">
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/cpace worker.jpg"
+                            data-title="Cpace Worker">
+                            <img src="gallery/cpace worker.jpg" alt="Cpace Worker" class="textile-image">
+                            <div class="textile-meta">
+
+                            </div>
+                        </a>
+                    </div>
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/suit 4.jpeg"
+                            data-title="Suit 4">
+                            <img src="gallery/suit 4.jpeg" alt="Suit 4" class="textile-image">
+                        </a>
+                    </div>
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/blue suit.jpeg"
+                            data-title="Blue ">
+                            <img src="gallery/blue.png" alt="Blue" class="textile-image">
+                        </a>
+                    </div>
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/suit 1.jpeg"
+                            data-title="Suit 2">
+                            <img src="gallery/suit 2.jpeg" alt="Suit 2" class="textile-image">
+                            <div class="textile-meta">
+
+                            </div>
+                        </a>
+                    </div>
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/suit 1.jpeg"
+                            data-title="Suit 1">
+                            <img src="gallery/suit 1.jpeg" alt="Suit 1" class="textile-image">
+                            <div class="textile-meta">
+
+                            </div>
+                        </a>
+                    </div>
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/suit 3.jpeg"
+                            data-title="Suit 3">
+                            <img src="gallery/suit 3.jpeg" alt="Suit 3" class="textile-image">
+                            <div class="textile-meta">
+
+                            </div>
+                        </a>
+                    </div>
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/cpace_part_5.png"
+                            data-title="Part 5">
+                            <img src="gallery/cpace_part_5.png" alt="Part 5" class="textile-image">
+                            <div class="textile-meta">
+
+                            </div>
+                        </a>
+                    </div>
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/shirt 1.jpeg"
+                            data-title="Shirt 1">
+                            <img src="gallery/shirt 1.jpeg" alt="Shirt 1" class="textile-image">
+                            <div class="textile-meta">
+
+                            </div>
+                        </a>
+                    </div>
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/shirt 2.jpeg"
+                            data-title="Shirt 2">
+                            <img src="gallery/shirt 2.jpeg" alt="Shirt 2" class="textile-image">
+                            <div class="textile-meta">
+
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/shirt 3.jpeg"
+                            data-title="Shirt 3">
+                            <img src="gallery/shirt 3.jpeg" alt="Shirt 3" class="textile-image">
+                            <div class="textile-meta">
+
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/shit 4.jpeg"
+                            data-title="Shirt 4">
+                            <img src="gallery/shit 4.jpeg" alt="Shirt 4" class="textile-image">
+                            <div class="textile-meta">
+
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/jk 1.jpeg"
+                            data-title="Jacket 1">
+                            <img src="gallery/jk 1.jpeg" alt="Jacket 1" class="textile-image">
+                            <div class="textile-meta">
+
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/jk 2.jpeg"
+                            data-title="Jacket 2">
+                            <img src="gallery/jk 2.jpeg" alt="Jacket 2" class="textile-image">
+                            <div class="textile-meta">
+
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/suit 5.jpeg"
+                            data-title="Pinnacle Dark">
+                            <img src="gallery/suit 5.jpeg" alt="Pinnacle Dark" class="textile-image">
+                        </a>
+                    </div>
+                    <div class="textile-item">
+                        <a class="textile-card textile-open" href="#" data-src="gallery/long.png"
+                            data-title="long">
+                            <img src="gallery/long.png" alt="long" class="textile-image">
+                        </a>
+                    </div>
+                   
+            </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+<footer id="main-footer">
+    <div class="section-content">
+        <div class="footer-grid">
+            <!-- Company Info -->
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <div class="footer-logo-text">
+                    C<span>pace</span> </div>
+                </div>
+                <p class="footer-description">
+                    Pioneering the next frontier of human civilization through technological leadership and human-centered innovation.
+                </p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/cpacetech/" class="footer-social-link" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/cpace-technologies-limited/" class="footer-social-link" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://facebook.com/cpace" class="footer-social-link" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://x.com/x.com/cpace" class="footer-social-link" target="_blank" aria-label="Follow us on X">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.244 2H21l-6.54 7.47L22 22h-6.828l-5.348-6.965L3.72 22H1l7.02-8.02L2 2h6.828l4.833 6.32L18.244 2z"/>
+                    </svg>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="project.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    <li><a href="privacy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    <li><a href="textile.html"><i class="fas fa-chevron-right"></i> Our Textile</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Projects -->
+            <div class="footer-section">
+                <h3 class="footer-heading">Our Projects</h3>
+                <ul class="footer-links">
+                    <li><a href="project.html#cpace-card-v1"><i class="fas fa-city"></i> Airborne Cities</a></li>
+                    <li><a href="project.html#cpace-card-v1"><i class="fas fa-graduation-cap"></i>Cpace Card</a></li>
+                    <li><a href="project.html#cpace-card-v1"><i class="fas fa-credit-card"></i>Cpace Card version 1</a></li>
+                    <li><a href="textile.html#textile-innovations"><i class="fas fa-tshirt"></i> Cpace Textiles</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3 class="footer-heading">Contact Us</h3>
+                <div class="footer-contact">
+                    <div class="social-buttons">
+                     <a href=https://www.google.com/maps/place/NATIONAL+ICT+INNOVATION+HUB/@0.3293222,32.6098697,17z/data=!3m1!4b1!4m6!3m5!1s0x177dbb42c53a1d2d:0xd7d2ad8945566450!8m2!3d0.3293222!4d32.6144831!16s%2Fg%2F11sb3nts1q?entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D class="social-btn location" target="_blank" aria-label="View our location on the map">
+                            
+                                <i class="fas fa-map-marker-alt"></i>
+                            </a>
+
+                            <a href="mailto:info@cpace.cloud" class="social-btn email" target="_blank" aria-label="Send us an email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            
+                            <a href="https://wa.me/256772270724" class="social-btn whatsapp" target="_blank" aria-label="Contact us on WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+                    <a href="contact.html" class="footer-btn">Get In Touch <i class="fas fa-arrow-right"></i></a>
+                </div>
+    </div>
+
+        <!-- Newsletter -->
+            <div class="footer-newsletter">
+                <div class="newsletter-content">
+                    <h3><i class="fas fa-paper-plane"></i> Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest in technology and innovation.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email address" aria-label="Email address" required>
+                        <a id="footer-subscribe-btn" class="footer-subscribe-btn footer-social-link"
+                           a href="https://www.youtube.com/channel/UCvqoIOFTpZq_cWeGIR6iNUA" target="_blank"
+                            rel="noopener noreferrer" aria-label="Subscribe on YouTube">
+                            <i class="fab fa-youtube" aria-hidden="true"></i> Subscribe
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <div class="copyright" style="text-align: center; width: 100%;">
+                    <p>&copy; 2026 <strong>CPace Technologies Limited</strong>. All rights reserved.</p>
+                    <p class="footer-note">Humanity. Elevated. | Pioneering Tomorrow's World Today</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+                <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div class="modal" id="gallery-modal" aria-hidden="true">
+        <button class="modal-close" id="modal-close" aria-label="Close gallery">&times;</button>
+        <div class="modal-inner" role="dialog" aria-modal="true">
+            <img id="modal-img" class="modal-content-img" src="" alt="">
+            <div id="modal-caption" class="modal-caption"></div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const modal = document.getElementById('gallery-modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalCaption = document.getElementById('modal-caption');
+            const modalClose = document.getElementById('modal-close');
+
+            function openModal(src, title) {
+                modalImg.src = src;
+                modalImg.alt = title || '';
+                modalCaption.textContent = title || '';
+                modal.classList.add('show');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('show');
+                modal.setAttribute('aria-hidden', 'true');
+                modalImg.src = '';
+                document.body.style.overflow = '';
+            }
+
+            document.querySelectorAll('.textile-open').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const src = el.getAttribute('data-src');
+                    const title = el.getAttribute('data-title');
+                    openModal(src, title);
+                });
+            });
+
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+        })();
+    </script>
+
+    <script src="enhanced.js"></script>
+</body>
+
+</html>
